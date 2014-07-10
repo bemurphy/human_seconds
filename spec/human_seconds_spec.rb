@@ -34,9 +34,10 @@ describe HumanSeconds do
     assert_equal "2h1m1s", human_seconds.to_s
   end
 
-  it "can convert seconds like 176461 to '49h1m1s'" do
+  # it "can convert seconds like 176461 to '49h1m1s'" do
+  it "can convert seconds like 176461 to '2d1h1m1s'" do
     human_seconds = HumanSeconds.new(176461)
-    assert_equal "49h1m1s", human_seconds.to_s
+    assert_equal "2d1h1m1s", human_seconds.to_s
   end
 end
 
@@ -61,8 +62,8 @@ describe HumanSeconds, '.parse' do
     assert_equal 7261, human_seconds.to_i
   end
 
-  it "can parse '49h1m1s' to an instance with 176461 seconds" do
-    human_seconds = HumanSeconds.parse('49h1m1s')
+  it "can parse '2d1h1m1s' to an instance with 176461 seconds" do
+    human_seconds = HumanSeconds.parse('2d1h1m1s')
     assert_equal 176461, human_seconds.to_i
   end
 

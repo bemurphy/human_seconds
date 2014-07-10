@@ -8,12 +8,14 @@ class HumanSeconds
   end
 
   def self.parse(str)
-    m = str.match(/(\d+h)?(\d+m)?(\d+s)?/)
+    m = str.match(/(\d+d)?(\d+h)?(\d+m)?(\d+s)?/)
 
     if m[0].empty?
       raise ArgumentError, "Unparseable string #{str}"
     else
-      seconds = (m[1].to_i * 3600) + (m[2].to_i * 60) + m[3].to_i
+      seconds = (m[1].to_i * 86_400) + (m[2].to_i * 3600) +
+        (m[3].to_i * 60) + m[4].to_i
+
       new(seconds)
     end
   end
@@ -24,6 +26,10 @@ class HumanSeconds
 
   def to_s
     str = ""
+
+    if ref_days != 0
+      str << "#{ref_days}d"
+    end
 
     if ref_hours != 0
       str << "#{ref_hours}h"
@@ -46,8 +52,12 @@ class HumanSeconds
     @ref_time ||= Time.at(0).utc + seconds
   end
 
+  def ref_days
+    seconds / 86_400
+  end
+
   def ref_hours
-    ref_time.hour + ( (seconds / 86_400) * 24 )
+    ref_time.hour
   end
 
   def ref_minutes
