@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = HumanSeconds::VERSION
   spec.authors       = ["Brendon Murphy"]
   spec.email         = ["xternal1+github@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Converts seconds like 7261 into a human readable string '2h1m1s'}
+  spec.description   = spec.summary
   spec.homepage      = ""
   spec.license       = "MIT"
 
