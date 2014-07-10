@@ -39,3 +39,34 @@ describe HumanSeconds do
     assert_equal "49h1m1s", human_seconds.to_s
   end
 end
+
+describe HumanSeconds, '.parse' do
+  it "can parse '59s' to an instance with 59 seconds" do
+    human_seconds = HumanSeconds.parse('59s')
+    assert_equal 59, human_seconds.to_i
+  end
+
+  it "can parse '1m' to an instance with 60 seconds" do
+    human_seconds = HumanSeconds.parse('1m')
+    assert_equal 60, human_seconds.to_i
+  end
+
+  it "can parse '2h12s' to an instance with 7212 seconds" do
+    human_seconds = HumanSeconds.parse('2h12s')
+    assert_equal 7212, human_seconds.to_i
+  end
+
+  it "can parse '2h1m1s' to an instance with 7261 seconds" do
+    human_seconds = HumanSeconds.parse('2h1m1s')
+    assert_equal 7261, human_seconds.to_i
+  end
+
+  it "can parse '49h1m1s' to an instance with 176461 seconds" do
+    human_seconds = HumanSeconds.parse('49h1m1s')
+    assert_equal 176461, human_seconds.to_i
+  end
+
+  it "raises an ArgumentError exception if given something unparseable" do
+    assert_raises(ArgumentError) { HumanSeconds.parse('1zl1k2j3z') }
+  end
+end

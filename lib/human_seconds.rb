@@ -7,6 +7,17 @@ class HumanSeconds
     @seconds = seconds
   end
 
+  def self.parse(str)
+    m = str.match(/(\d+h)?(\d+m)?(\d+s)?/)
+
+    if m[0].empty?
+      raise ArgumentError, "Unparseable string #{str}"
+    else
+      seconds = (m[1].to_i * 3600) + (m[2].to_i * 60) + m[3].to_i
+      new(seconds)
+    end
+  end
+
   def to_i
     seconds
   end
