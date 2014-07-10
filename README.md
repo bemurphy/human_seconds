@@ -1,6 +1,8 @@
 # HumanSeconds
 
-TODO: Write a gem description
+Converts seconds like 7261 into a human readable string '2h1m1s'.
+
+Also can parse that format back to integer seconds.
 
 ## Installation
 
@@ -18,7 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+hs = HumanSeconds.new(61)
+hs.to_i #=> 61
+hs.to_s #=> 1m1s
+
+HumanSeconds.parse('1m1s').to_i # => 61
+```
 
 ## Contributing
 
