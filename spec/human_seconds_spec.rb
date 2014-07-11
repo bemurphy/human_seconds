@@ -4,7 +4,7 @@ require 'minitest/autorun'
 require_relative '../lib/human_seconds'
 
 describe HumanSeconds do
-  it "is initialized with integer seconds" do
+  it "is initialized with integer total_seconds" do
     human_seconds = HumanSeconds.new(61)
     assert_equal 61, human_seconds.to_i
   end

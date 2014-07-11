@@ -1,10 +1,10 @@
 require "human_seconds/version"
 
 class HumanSeconds
-  attr_reader :seconds
+  attr_reader :total_seconds
 
-  def initialize(seconds)
-    @seconds = seconds
+  def initialize(total_seconds)
+    @total_seconds = total_seconds
   end
 
   def self.parse(str)
@@ -21,37 +21,37 @@ class HumanSeconds
   end
 
   def to_i
-    seconds
+    total_seconds
   end
 
   def to_s
     [
-      "#{ref_days}d",
-      "#{ref_hours}h",
-      "#{ref_minutes}m",
-      "#{ref_seconds}s",
+      "#{days}d",
+      "#{hours}h",
+      "#{minutes}m",
+      "#{seconds}s",
     ].reject { |t| t.start_with?('0') }.join
   end
 
   private
 
   def ref_time
-    @ref_time ||= Time.at(0).utc + seconds
+    @ref_time ||= Time.at(0).utc + total_seconds
   end
 
-  def ref_days
-    seconds / 86_400
+  def days
+    total_seconds / 86_400
   end
 
-  def ref_hours
+  def hours
     ref_time.hour
   end
 
-  def ref_minutes
+  def minutes
     ref_time.min
   end
 
-  def ref_seconds
+  def seconds
     ref_time.sec
   end
 end
