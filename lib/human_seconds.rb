@@ -25,25 +25,12 @@ class HumanSeconds
   end
 
   def to_s
-    str = ""
-
-    if ref_days != 0
-      str << "#{ref_days}d"
-    end
-
-    if ref_hours != 0
-      str << "#{ref_hours}h"
-    end
-
-    if ref_minutes != 0
-      str << "#{ref_minutes}m"
-    end
-
-    if ref_seconds != 0
-      str << "#{ref_seconds}s"
-    end
-
-    str
+    [
+      "#{ref_days}d",
+      "#{ref_hours}h",
+      "#{ref_minutes}m",
+      "#{ref_seconds}s",
+    ].reject { |t| t.start_with?('0') }.join
   end
 
   private
